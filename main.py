@@ -14,17 +14,23 @@ else:
         os.path.join(sys.path[0], "img/icono.png")))
 
 root.title('Reloj')
-root.geometry('350x450')
-fecha = Label(font=('Courier', 20, 'normal'), text=f'Hoy\n{today.day}/{today.month}/{today.year}')
+root.geometry('400x400')
+root.config(background='#1f2f3f')
+miframe=Frame()
+miframe.config(width='400', height='400', background='#ffffff')
+miframe.pack(padx=60, pady=60)
+
+
+fecha = Label(miframe, font=('Courier', 20, 'normal'), text=f'Hoy\n{today.day}/{today.month}/{today.year}\n', fg='#ffffff', bg='#72a922')
 fecha.pack(fill=X)
-Hora = Label(font=('Courier', 20, 'normal'), text=f'Hora\n{time.strftime("%H:%M:%S")}')
-Hora.pack(fill=X, padx=30, pady=30)
+Hora = Label(miframe,font=('Courier', 20, 'normal'), text=f'{time.strftime("%H:%M:%S")}\nHora local',fg='#ffffff', bg='#72a922')
+Hora.pack(fill=X)
 
 
 def update_time():
     new_time = time.strftime("%H:%M:%S")
     if Hora['text'] != new_time:
-        Hora['text'] = f'Hora\n{new_time}'
+        Hora['text'] = f'{new_time}\nHora local'
     root.after(1000, update_time)
 
 
